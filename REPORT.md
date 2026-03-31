@@ -70,9 +70,25 @@ This architecture enables the AI agent to act as a natural-language interface to
 ## Task 1C — Skill prompt
 
 🐈 nanobot
-Here are the scores (pass rates) for all labs.                                                                                        
+Here are the available labs. Which one would you like to see scores for?                                 
 
-The agent asking which lab or listing options?
+ 1 Lab 01 – Products, Architecture & Roles                                                               
+ 2 Lab 02 — Run, Fix, and Deploy a Backend Service                                                       
+ 3 Lab 03 — Backend API: Explore, Debug, Implement, Deploy                                               
+ 4 Lab 04 — Testing, Front-end, and AI Agents                                                            
+ 5 Lab 05 — Data Pipeline and Analytics Dashboard                                                        
+ 6 Lab 06 — Build Your Own Agent                                                                         
+ 7 Lab 07 — Build a Client with an AI Coding Agent                                                       
+ 8 lab-08                                                                                                
+
+Please tell me which lab number (1-8) you'd like to see the pass rates for, or I can show you:           
+
+ • All labs - Pass rates for every lab                                                                   
+ • Completion rates - How many students passed each lab                                                  
+ • Top learners - Best performing students for a specific lab                                            
+ • Group performance - Scores by student group                                                           
+
+What would you like to see? 
 
 
 ## Task 2A — Deployed agent
