@@ -72,7 +72,7 @@ This architecture enables the AI agent to act as a natural-language interface to
 🐈 nanobot
 Here are the scores (pass rates) for all labs.                                                                                        
 
-Summary: Lab 01 has the highest individual task score (84.3% for "Lab setup"), while Lab 07 has the strongest overall performance across required tasks. Lab 08 is new with no submissions yet.
+The agent asking which lab or listing options?
 
 
 ## Task 2A — Deployed agent
