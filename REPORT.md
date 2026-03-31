@@ -17,25 +17,7 @@ The agentic loop is the fundamental cycle that AI agents follow to accomplish ta
  4 Observe — Receive feedback from the actions taken (success, failure, new data)                                                                                                                                                                                  
  5 Repeat — Continue the loop until the goal is achieved or a stopping condition is met                                                                                                                                                                            
 
-                                                                                                                                                                                                                                                                   
- ┌─────────────┐                                                                                                                                                                                                                                                   
- │   Perceive  │                                                                                                                                                                                                                                                   
- └──────┬──────┘                                                                                                                                                                                                                                                   
-        ↓                                                                                                                                                                                                                                                          
- ┌─────────────┐                                                                                                                                                                                                                                                   
- │    Reason   │                                                                                                                                                                                                                                                   
- └──────┬──────┘                                                                                                                                                                                                                                                   
-        ↓                                                                                                                                                                                                                                                          
- ┌─────────────┐                                                                                                                                                                                                                                                   
- │     Act     │                                                                                                                                                                                                                                                   
- └──────┬──────┘                                                                                                                                                                                                                                                   
-        ↓                                                                                                                                                                                                                                                          
- ┌─────────────┐                                                                                                                                                                                                                                                   
- │   Observe   │                                                                                                                                                                                                                                                   
- └──────┬──────┘                                                                                                                                                                                                                                                   
-        ↓                                                                                                                                                                                                                                                          
-     (loop)                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                   
+                                                                                 
 
 This loop enables agents to:                                                                                                                                                                                                                                       
 
@@ -97,8 +79,6 @@ Overview
 
 The LMS is a Docker Compose-based system built around the OBER (Outcome-Based Educational Recommender) data model. It follows the C4 architecture model (Context, Containers, Components, Code).                                                                   
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 System Components                                                                                                                                                                                                                                                  
 
 1. Core Application Stack                                                                                                                                                                                                                                          
@@ -125,10 +105,7 @@ System Components
 
  • OpenTelemetry Collector — Collects telemetry data                                                                                                                                                                                                               
  • VictoriaLogs — Log storage and querying                                                                                                                                                                                                                         
- • VictoriaTraces — Distributed trace storage                                                                                                                                                                                                                      
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+ • VictoriaTraces — Distributed trace storage                                                                                                                                                                        
 Data Model (OBER-based)                                                                                                                                                                                                                                            
 
                                                                                                                                                                                                                                                                    
@@ -141,25 +118,7 @@ Data Model (OBER-based)
                                                                                                                                                                                                                                                                    
  Interacts (interaction log)                                                                                                                                                                                                                                       
  ├── learner_id, item_id, kind (view/attempt/complete), created_at                                                                                                                                                                                                 
-                                                                                                                                                                                                                                                                   
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-Architecture Diagram                                                                                                                                                                                                                                               
-
-                                                                                                                                                                                                                                                                   
- [Browser]            [Telegram Bot]                                                                                                                                                                                                                               
-      \                       /                                                                                                                                                                                                                                    
-       \                     /                                                                                                                                                                                                                                     
-        +---- [Nanobot Agent] ---- [LLM via Qwen API]                                                                                                                                                                                                              
-                   |                                                                                                                                                                                                                                               
-           +-------+-------+                                                                                                                                                                                                                                       
-           |               |                                                                                                                                                                                                                                       
-     [LMS MCP Tools]   [Observability Tools]                                                                                                                                                                                                                       
-           |               |                                                                                                                                                                                                                                       
-     [FastAPI Backend]    [Logs / Traces]                                                                                                                                                                                                                          
-           |                                                                                                                                                                                                                                                       
-      [PostgreSQL]                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                                                                                                                      
                                                                                                                                                                                                                                                                    
 
 Traffic flow:                                                                                                                                                                                                                                                      
@@ -168,8 +127,6 @@ Traffic flow:
  2 API requests → Caddy reverse-proxies to FastAPI (port 42001)                                                                                                                                                                                                    
  3 FastAPI → Async SQL queries to PostgreSQL (port 42004)                                                                                                                                                                                                          
  4 Nanobot → WebSocket connections (port 8765) → MCP tools → FastAPI API                                                                                                                                                                                           
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Key Design Decisions                                                                                                                                                                                                                                               
 
@@ -180,8 +137,6 @@ Key Design Decisions
  5 Async database access — Uses asyncpg for non-blocking queries                                                                                                                                                                                                   
  6 Standalone WebSocket relay — Telegram bot and Flutter app both connect to Nanobot via WebSocket                                                                                                                                                                 
  7 Structured message protocol — Typed JSON messages (text, choice, confirm, composite) for rich UI                                                                                                                                                                
-
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Ports                                                                                                                                                                                                                                                              
 
@@ -197,6 +152,9 @@ Ports
                                                
 
 This architecture enables the AI agent to act as a natural-language interface to the LMS, allowing users to ask questions like "Which lab has the lowest pass rate?" instead of manually querying dashboards. 
+
+
+
 
 ## Task 1C — Skill prompt
 
@@ -291,9 +249,11 @@ Lab 08 — lab-08
 
 No submission data yet                                                                                                                                                                                                                                             
 
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 Summary: Lab 01 has the highest individual task score (84.3% for "Lab setup"), while Lab 07 has the strongest overall performance across required tasks. Lab 08 is new with no submissions yet.
+
+
+
+
 
 ## Task 2A — Deployed agent
 
