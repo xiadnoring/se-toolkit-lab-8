@@ -4,8 +4,6 @@ Paste your checkpoint evidence below. Add screenshots as image files in the repo
 
 ## Task 1A — Bare agent
 
-<!-- Paste the agent's response to "What is the agentic loop?" and "What labs are available in our LMS?" -->
-
 Using config: /home/Timur/Desktop/WorkSpace/se-toolkit-lab-8/nanobot/config.json
 
 🐈 nanobot
@@ -47,6 +45,7 @@ Here are the available labs in the LMS:
 There are 8 labs total. Would you like more details about any specific lab, such as pass rates, completion rates, or submission timelines? 
 
 ## Task 1B — Agent with LMS tools
+
 Using config: /home/Timur/Desktop/WorkSpace/se-toolkit-lab-8/nanobot/config.json
 
 🐈 nanobot
@@ -66,7 +65,7 @@ Here are the available labs in the LMS:
                                                              
 
 There are 8 labs total. Would you like more details about any specific lab, such as pass rates, completion rates, or submission timelines?   
-<!-- Paste the agent's response to "What labs are available?" and "Describe the architecture of the LMS system" -->
+
 Using config: /home/Timur/Desktop/WorkSpace/se-toolkit-lab-8/nanobot/config.json
 
 🐈 nanobot
@@ -158,7 +157,6 @@ This architecture enables the AI agent to act as a natural-language interface to
 
 ## Task 1C — Skill prompt
 
-<!-- Paste the agent's response to "Show me the scores" (without specifying a lab) -->
 🐈 nanobot
 Here are the scores (pass rates) for all labs:                                                                                                                                                                                                                     
 
