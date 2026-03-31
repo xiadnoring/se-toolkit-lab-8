@@ -4,145 +4,296 @@ Paste your checkpoint evidence below. Add screenshots as image files in the repo
 
 ## Task 1A — Bare agent
 
-**Question 1: "What is the agentic loop?"**
+<!-- Paste the agent's response to "What is the agentic loop?" and "What labs are available in our LMS?" -->
 
-Response:
-```
-The agentic loop is the fundamental cycle that autonomous AI agents follow to accomplish tasks. It typically consists of these core stages:
+Using config: /home/Timur/Desktop/WorkSpace/se-toolkit-lab-8/nanobot/config.json
 
-1. Perceive
-   The agent gathers information about its environment or current state. This includes:
-   - Reading user input
-   - Observing tool outputs
-   - Checking memory/context
-   - Monitoring external data sources
+🐈 nanobot
+The agentic loop is the fundamental cycle that AI agents follow to accomplish tasks autonomously. It typically consists of these core stages:                                                                                                                      
 
-2. Reason/Plan
-   The agent processes the information and decides what to do:
-   - Analyze the current situation
-   - Break down complex goals into steps
-   - Select appropriate tools or actions
-   - Consider constraints and preferences
+ 1 Perceive — Gather information from the environment (user input, tool outputs, external data)                                                                                                                                                                    
+ 2 Reason — Analyze the information, plan next steps, and make decisions about what actions to take                                                                                                                                                                
+ 3 Act — Execute actions using available tools (file operations, API calls, web searches, etc.)                                                                                                                                                                    
+ 4 Observe — Receive feedback from the actions taken (success, failure, new data)                                                                                                                                                                                  
+ 5 Repeat — Continue the loop until the goal is achieved or a stopping condition is met                                                                                                                                                                            
 
-3. Act
-   The agent executes its decision:
-   - Call tools (search, file operations, API calls, etc.)
-   - Send messages
-   - Modify state or environment
-   - Request clarification if needed
+                                                                                                                                                                                                                                                                   
+ ┌─────────────┐                                                                                                                                                                                                                                                   
+ │   Perceive  │                                                                                                                                                                                                                                                   
+ └──────┬──────┘                                                                                                                                                                                                                                                   
+        ↓                                                                                                                                                                                                                                                          
+ ┌─────────────┐                                                                                                                                                                                                                                                   
+ │    Reason   │                                                                                                                                                                                                                                                   
+ └──────┬──────┘                                                                                                                                                                                                                                                   
+        ↓                                                                                                                                                                                                                                                          
+ ┌─────────────┐                                                                                                                                                                                                                                                   
+ │     Act     │                                                                                                                                                                                                                                                   
+ └──────┬──────┘                                                                                                                                                                                                                                                   
+        ↓                                                                                                                                                                                                                                                          
+ ┌─────────────┐                                                                                                                                                                                                                                                   
+ │   Observe   │                                                                                                                                                                                                                                                   
+ └──────┬──────┘                                                                                                                                                                                                                                                   
+        ↓                                                                                                                                                                                                                                                          
+     (loop)                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                   
 
-4. Reflect/Learn
-   The agent evaluates the outcome:
-   - Did the action succeed?
-   - What new information was gained?
-   - Should the plan be adjusted?
-   - Update memory with important facts
+This loop enables agents to:                                                                                                                                                                                                                                       
 
-Then Repeat →
+ • Break complex tasks into smaller steps                                                                                                                                                                                                                          
+ • Adapt based on feedback and errors                                                                                                                                                                                                                              
+ • Use tools dynamically as needed                                                                                                                                                                                                                                 
+ • Work toward goals with minimal human intervention                                                                                                                                                                                                               
 
-This loop continues until the goal is achieved or the agent determines it cannot proceed.
+The quality of an agent depends on how well it executes each stage—particularly its reasoning capabilities and its ability to learn from observations to improve future actions. 
 
-In my case (nanobot), the loop looks like:
-1. Perceive: Read your message and context (time, workspace, memory)
-2. Reason: Determine what tools or actions are needed
-3. Act: Execute tool calls (read files, search web, run commands, etc.)
-4. Reflect: Process results, update memory if needed, respond to you
+🐈 nanobot
+Here are the available labs in the LMS:                                                                                                                                                                                                                            
 
-This architecture enables agents to handle complex, multi-step tasks autonomously rather than just responding to single-turn queries.
-```
+                                                             
+ ID  Title                                                   
+ ─────────────────────────────────────────────────────────── 
+ 1   Lab 01 – Products, Architecture & Roles                 
+ 2   Lab 02 — Run, Fix, and Deploy a Backend Service         
+ 3   Lab 03 — Backend API: Explore, Debug, Implement, Deploy 
+ 4   Lab 04 — Testing, Front-end, and AI Agents              
+ 5   Lab 05 — Data Pipeline and Analytics Dashboard          
+ 6   Lab 06 — Build Your Own Agent                           
+ 7   Lab 07 — Build a Client with an AI Coding Agent         
+ 8   lab-08                                                  
+                                                             
 
-**Question 2: "What labs are available in our LMS?"**
-
-Response (without MCP - agent inspects local files):
-```
-Based on my exploration of the workspace, here are the available labs in this LMS (Learning Management System) project:
-
-Lab 8 — The Agent is the Interface
-
-This is the current lab you're working on. It focuses on building an AI agent (nanobot) as a natural-language interface to the LMS.
-
-Required Tasks:
-1. Task 1 — Set Up the Agent (install nanobot, configure Qwen API, add MCP tools, write skill prompt)
-2. Task 2 — Deploy and Connect a Web Client (Dockerize nanobot, add WebSocket channel + Flutter chat UI)
-3. Task 3 — Give the Agent New Eyes (explore observability data, write log/trace MCP tools)
-4. Task 4 — Diagnose a Failure and Make the Agent Proactive (investigate a failure, schedule health checks, fix a planted bug)
-
-Optional Tasks:
-1. Task 1 — Add a Telegram Bot Client (same agent, different interface)
-
-The LMS system itself includes:
-- Backend: FastAPI application with endpoints for items, interactions, and learners
-- Database: PostgreSQL with seeded data
-- Frontend: React dashboard and Flutter web chat UI
-- Observability: OpenTelemetry Collector, VictoriaLogs, and VictoriaTraces
-```
-
-Note: Without MCP, the agent inspects local repo files but cannot query live LMS backend data.
+There are 8 labs total. Would you like more details about any specific lab, such as pass rates, completion rates, or submission timelines? 
 
 ## Task 1B — Agent with LMS tools
+Using config: /home/Timur/Desktop/WorkSpace/se-toolkit-lab-8/nanobot/config.json
 
-**Question 1: "What labs are available?"**
+🐈 nanobot
+Here are the available labs in the LMS:                                                                                                                                                                                                                            
 
-Response (with MCP - real backend data):
-```
-Here are the available labs:
+                                                             
+ ID  Title                                                   
+ ─────────────────────────────────────────────────────────── 
+ 1   Lab 01 – Products, Architecture & Roles                 
+ 2   Lab 02 — Run, Fix, and Deploy a Backend Service         
+ 3   Lab 03 — Backend API: Explore, Debug, Implement, Deploy 
+ 4   Lab 04 — Testing, Front-end, and AI Agents              
+ 5   Lab 05 — Data Pipeline and Analytics Dashboard          
+ 6   Lab 06 — Build Your Own Agent                           
+ 7   Lab 07 — Build a Client with an AI Coding Agent         
+ 8   lab-08                                                  
+                                                             
 
-1. Lab 01 – Products, Architecture & Roles
-2. Lab 02 — Run, Fix, and Deploy a Backend Service
-3. Lab 03 — Backend API: Explore, Debug, Implement, Deploy
-4. Lab 04 — Testing, Front-end, and AI Agents
-5. Lab 05 — Data Pipeline and Analytics Dashboard
-6. Lab 06 — Build Your Own Agent
-7. Lab 07 — Build a Client with an AI Coding Agent
-8. lab-08
-```
+There are 8 labs total. Would you like more details about any specific lab, such as pass rates, completion rates, or submission timelines?   
+<!-- Paste the agent's response to "What labs are available?" and "Describe the architecture of the LMS system" -->
+Using config: /home/Timur/Desktop/WorkSpace/se-toolkit-lab-8/nanobot/config.json
 
-**Question 2: "Which lab has the lowest pass rate?"**
+🐈 nanobot
+Let me explore the workspace to find more information about the LMS architecture.                                                                                                                                                                                  
 
-Response (agent chains multiple MCP tool calls):
-```
-Based on the completion rates for all labs:
+🐈 nanobot
+Based on the documentation, here's the LMS (Learning Management System) Architecture:                                                                                                                                                                              
 
-| Lab    | Completion Rate | Passed | Total |
-|--------|-----------------|--------|-------|
-| Lab 01 | 100.0%          | 258    | 258   |
-| Lab 02 | 89.1%           | 131    | 147   |
-| Lab 03 | 89.1%           | 156    | 175   |
-| Lab 04 | 97.2%           | 239    | 246   |
-| Lab 05 | 98.8%           | 247    | 250   |
-| Lab 06 | 98.4%           | 242    | 246   |
-| Lab 07 | 99.6%           | 238    | 239   |
-| Lab 08 | 0.0%            | 0      | 0     |
+Overview                                                                                                                                                                                                                                                           
 
-Lab 02 and Lab 03 are tied for the lowest pass rate among labs with submissions, both at 89.1%.
+The LMS is a Docker Compose-based system built around the OBER (Outcome-Based Educational Recommender) data model. It follows the C4 architecture model (Context, Containers, Components, Code).                                                                   
 
-Note: Lab 08 shows 0.0% completion rate, but this is because it has no submissions yet (0 total), so it's not a meaningful comparison.
-```
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+System Components                                                                                                                                                                                                                                                  
+
+1. Core Application Stack                                                                                                                                                                                                                                          
+
+                                                                                                                                         
+ Component        Technology                 Role                                                                                        
+ ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+ Caddy            Go                         Reverse proxy + static file server. Serves React/Flutter frontends and proxies API requests 
+ FastAPI Backend  Python, SQLModel, Uvicorn  REST API with Swagger UI. Handles business logic, authentication                            
+ PostgreSQL       PostgreSQL                 Relational database storing items, learners, and interactions                               
+ pgAdmin          pgAdmin 4                  Web UI for database management                                                              
+                                                                                                                                         
+
+2. AI Agent Layer                                                                                                                                                                                                                                                  
+
+                                                                                                                   
+ Component     Technology          Role                                                                            
+ ───────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+ Nanobot       Python, nanobot-ai  AI agent gateway. Accepts WebSocket connections, routes to LLM, calls MCP tools 
+ Telegram Bot  Python, aiogram     Standalone bot that forwards messages to Nanobot via WebSocket                  
+                                                                                                                   
+
+3. Observability Stack (for monitoring)                                                                                                                                                                                                                            
+
+ • OpenTelemetry Collector — Collects telemetry data                                                                                                                                                                                                               
+ • VictoriaLogs — Log storage and querying                                                                                                                                                                                                                         
+ • VictoriaTraces — Distributed trace storage                                                                                                                                                                                                                      
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Data Model (OBER-based)                                                                                                                                                                                                                                            
+
+                                                                                                                                                                                                                                                                   
+ Item (tree hierarchy)                                                                                                                                                                                                                                             
+ ├── id, type, parent_id, title, description, attributes (JSONB)                                                                                                                                                                                                   
+ └── Forms: course → lab → task → step                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                   
+ Learner                                                                                                                                                                                                                                                           
+ ├── id, name, email, enrolled_at                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                   
+ Interacts (interaction log)                                                                                                                                                                                                                                       
+ ├── learner_id, item_id, kind (view/attempt/complete), created_at                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                   
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Architecture Diagram                                                                                                                                                                                                                                               
+
+                                                                                                                                                                                                                                                                   
+ [Browser]            [Telegram Bot]                                                                                                                                                                                                                               
+      \                       /                                                                                                                                                                                                                                    
+       \                     /                                                                                                                                                                                                                                     
+        +---- [Nanobot Agent] ---- [LLM via Qwen API]                                                                                                                                                                                                              
+                   |                                                                                                                                                                                                                                               
+           +-------+-------+                                                                                                                                                                                                                                       
+           |               |                                                                                                                                                                                                                                       
+     [LMS MCP Tools]   [Observability Tools]                                                                                                                                                                                                                       
+           |               |                                                                                                                                                                                                                                       
+     [FastAPI Backend]    [Logs / Traces]                                                                                                                                                                                                                          
+           |                                                                                                                                                                                                                                                       
+      [PostgreSQL]                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                   
+
+Traffic flow:                                                                                                                                                                                                                                                      
+
+ 1 Users access via browser (port 42002) → Caddy serves static files                                                                                                                                                                                               
+ 2 API requests → Caddy reverse-proxies to FastAPI (port 42001)                                                                                                                                                                                                    
+ 3 FastAPI → Async SQL queries to PostgreSQL (port 42004)                                                                                                                                                                                                          
+ 4 Nanobot → WebSocket connections (port 8765) → MCP tools → FastAPI API                                                                                                                                                                                           
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Key Design Decisions                                                                                                                                                                                                                                               
+
+ 1 Monolith with layered structure — Single FastAPI app (routers → DB access → models)                                                                                                                                                                             
+ 2 Caddy as reverse proxy — Eliminates CORS, serves static files, handles TLS                                                                                                                                                                                      
+ 3 SQLModel ORM — Combines SQLAlchemy + Pydantic for models and validation                                                                                                                                                                                         
+ 4 Feature flags — Optional endpoints controlled via environment variables                                                                                                                                                                                         
+ 5 Async database access — Uses asyncpg for non-blocking queries                                                                                                                                                                                                   
+ 6 Standalone WebSocket relay — Telegram bot and Flutter app both connect to Nanobot via WebSocket                                                                                                                                                                 
+ 7 Structured message protocol — Typed JSON messages (text, choice, confirm, composite) for rich UI                                                                                                                                                                
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ports                                                                                                                                                                                                                                                              
+
+                                               
+ Service             Host Port  Container Port 
+ ───────────────────────────────────────────── 
+ Caddy (main entry)  42002      -              
+ FastAPI API         42001      8000           
+ pgAdmin             42003      -              
+ PostgreSQL          42004      5432           
+ Nanobot WebSocket   -          8765           
+ Nanobot HTTP        -          18790          
+                                               
+
+This architecture enables the AI agent to act as a natural-language interface to the LMS, allowing users to ask questions like "Which lab has the lowest pass rate?" instead of manually querying dashboards. 
 
 ## Task 1C — Skill prompt
 
-**Question: "Show me the scores" (without specifying a lab)**
+<!-- Paste the agent's response to "Show me the scores" (without specifying a lab) -->
+🐈 nanobot
+Here are the scores (pass rates) for all labs:                                                                                                                                                                                                                     
 
-Response (with LMS skill prompt - agent asks for lab selection):
-```
-Which lab would you like to see scores for? Here are the available labs:
+Lab 01 – Products, Architecture & Roles                                                                                                                                                                                                                            
 
-1. Lab 01 – Products, Architecture & Roles
-2. Lab 02 — Run, Fix, and Deploy a Backend Service
-3. Lab 03 — Backend API: Explore, Debug, Implement, Deploy
-4. Lab 04 — Testing, Front-end, and AI Agents
-5. Lab 05 — Data Pipeline and Analytics Dashboard
-6. Lab 06 — Build Your Own Agent
-7. Lab 07 — Build a Client with an AI Coding Agent
-8. lab-08
+                                                                 
+ Task                                        Avg Score  Attempts 
+ ─────────────────────────────────────────────────────────────── 
+ Lab setup                                   84.3%      3,466    
+ Task 0: Practice the Git workflow           64.5%      306      
+ Task 1: Product & architecture description  55.1%      161      
+ Task 2: Roles and skills mapping            49.8%      83       
+ Optional: Resolve a merge conflict          34.6%      13       
+ Optional: Create a release                  60.0%      5        
+ Optional: Add a CI check                    42.9%      7        
+ Optional: Plan skill development            20.0%      5        
+                                                                 
 
-Please let me know which lab you're interested in, or I can show you scores for all of them.
-```
+Lab 02 — Run, Fix, and Deploy a Backend Service                                                                                                                                                                                                                    
 
-The skill prompt teaches the agent to:
-- Call `lms_labs` first when no lab is specified
-- Present available labs with clear labels
-- Ask the user to choose before proceeding
+                                                                     
+ Task                                            Avg Score  Attempts 
+ ─────────────────────────────────────────────────────────────────── 
+ Task 1: Run the web server                      67.9%      210      
+ Task 2: Identify, report, and fix a bug         66.7%      216      
+ Task 4: Deploy the web server to the VM         56.2%      84       
+ Optional 3: Implement the post-order traversal  62.5%      6        
+ Optional 1: Implement the /outcomes endpoint    36.4%      11       
+ Optional 2: Make your VM a proxy                0.0%       3        
+                                                                     
+
+Lab 03 — Backend API: Explore, Debug, Implement, Deploy                                                                                                                                                                                                            
+
+                                                                         
+ Task                                                Avg Score  Attempts 
+ ─────────────────────────────────────────────────────────────────────── 
+ Task 2: Enable and debug the interactions endpoint  66.4%      299      
+ Task 1: Explore the API                             63.5%      382      
+ Task 3: Implement the learners endpoint             50.0%      4        
+ Task 4: Deploy to a hardened VM                     43.9%      110      
+ Optional 2: Set up CI with GitHub Actions           44.0%      5        
+                                                                         
+
+Lab 04 — Testing, Front-end, and AI Agents                                                                                                                                                                                                                         
+
+                                                                   
+ Task                                          Avg Score  Attempts 
+ ───────────────────────────────────────────────────────────────── 
+ Task 1: Observe System Component Interaction  61.0%      688      
+ Task 2: Back-end Testing                      59.8%      761      
+ Task 3: Add Front-end                         56.3%      8        
+ Optional 1: CI/CD with GitHub Actions         33.8%      17       
+                                                                   
+
+Lab 05 — Data Pipeline and Analytics Dashboard                                                                                                                                                                                                                     
+
+                                                      
+ Task                             Avg Score  Attempts 
+ ──────────────────────────────────────────────────── 
+ Task 1: Build the Data Pipeline  73.5%      629      
+ Task 3: Dashboard Front-end      73.0%      23       
+ Task 2: Analytics Endpoints      64.4%      633      
+ Optional 1: Grafana Dashboard    57.2%      60       
+                                                      
+
+Lab 06 — Build Your Own Agent                                                                                                                                                                                                                                      
+
+                                                      
+ Task                             Avg Score  Attempts 
+ ──────────────────────────────────────────────────── 
+ Task 2: The Documentation Agent  74.0%      427      
+ Task 1: Call an LLM from Code    61.2%      683      
+ Task 3: The System Agent         42.9%      2,066    
+                                                      
+
+Lab 07 — Build a Client with an AI Coding Agent                                                                                                                                                                                                                    
+
+                                                                    
+ Task                                           Avg Score  Attempts 
+ ────────────────────────────────────────────────────────────────── 
+ Task 1: Plan and Scaffold                      76.7%      768      
+ Task 2: Backend Integration                    66.8%      570      
+ Task 4: Containerize and Document              66.6%      706      
+ Task 3: Intent-Based Natural Language Routing  58.8%      744      
+                                                                    
+
+Lab 08 — lab-08                                                                                                                                                                                                                                                    
+
+No submission data yet                                                                                                                                                                                                                                             
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Summary: Lab 01 has the highest individual task score (84.3% for "Lab setup"), while Lab 07 has the strongest overall performance across required tasks. Lab 08 is new with no submissions yet.
 
 ## Task 2A — Deployed agent
 
