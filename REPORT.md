@@ -154,7 +154,9 @@ backend-1  | error: "(sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) con
 **VictoriaLogs query:** `_time:10m severity:ERROR service.name:"Learning Management Service"`
 
 ## Task 3B — Traces
-
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
 <!-- Screenshot of healthy trace span hierarchy -->
 <!-- Screenshot of error trace -->
 
