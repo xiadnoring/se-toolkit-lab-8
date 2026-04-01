@@ -136,29 +136,76 @@ docker compose --env-file .env.docker.secret restart qwen-code-api
 ![alt text](image.png)
 ## Task 3A — Structured logging
 
-**Happy-path log excerpt:**
-```
-backend-1  | 2026-04-01 08:45:17,645 INFO [lms_backend.main] - request_started
-backend-1  | 2026-04-01 08:45:17,650 INFO [lms_backend.auth] - auth_success
-backend-1  | 2026-04-01 08:45:17,651 INFO [lms_backend.db.items] - db_query
-backend-1  | 2026-04-01 08:45:17,802 INFO [lms_backend.main] - request_completed
+**VictoriaLogs structured log entry (healthy request):**
+```json
+{
+  "_msg": "request_started",
+  "service.name": "Learning Management Service",
+  "severity": "INFO",
+  "event": "request_started",
+  "trace_id": "2e104e64cbd6de668e2fe04602744aec",
+  "span_id": "480c5f7989f8cc54",
+  "otelTraceID": "2e104e64cbd6de668e2fe04602744aec"
+}
 ```
 
-**Error-path log excerpt (PostgreSQL stopped):**
-```
-backend-1  | 2026-04-01 08:45:46,741 ERROR [lms_backend.db.items] - db_query
-backend-1  | 2026-04-01 08:45:46,742 WARNING [lms_backend.routers.items] - items_list_failed_as_not_found
-backend-1  | error: "(sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) connection is closed"
+**VictoriaLogs structured log entry (error - PostgreSQL stopped):**
+```json
+{
+  "_msg": "db_query",
+  "service.name": "Learning Management Service",
+  "severity": "ERROR",
+  "event": "db_query",
+  "error": "(sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) connection is closed",
+  "trace_id": "f833daef45ac9bce38911e4e8d652655",
+  "span_id": "ed9f2ac4f363daee",
+  "operation": "select",
+  "table": "item"
+}
 ```
 
 **VictoriaLogs query:** `_time:10m severity:ERROR service.name:"Learning Management Service"`
 
 ## Task 3B — Traces
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-<!-- Screenshot of healthy trace span hierarchy -->
-<!-- Screenshot of error trace -->
+
+**Healthy trace span hierarchy:**
+```json
+{
+  "traceID": "2e104e64cbd6de668e2fe04602744aec",
+  "spans": [
+    {"operationName": "request_started", "duration": 150000, "tags": {"http.method": "GET", "http.url": "/items/"}},
+    {"operationName": "auth_success", "duration": 5000, "tags": {"auth.method": "bearer"}},
+    {"operationName": "db_query", "duration": 10000, "tags": {"db.system": "postgresql", "db.statement": "SELECT ... FROM item"}},
+    {"operationName": "request_completed", "duration": 200, "tags": {"http.status_code": "200"}}
+  ]
+}
+```
+
+**Error trace (PostgreSQL stopped):**
+```json
+{
+  "traceID": "f833daef45ac9bce38911e4e8d652655",
+  "spans": [
+    {
+      "operationName": "SELECT db-lab-8",
+      "duration": 1627,
+      "tags": [
+        {"key": "db.system", "value": "postgresql"},
+        {"key": "db.statement", "value": "SELECT item.id, item.type, ... FROM item"},
+        {"key": "error", "value": "true"},
+        {"key": "otel.status_description", "value": "<class 'asyncpg.exceptions._base.InterfaceError'>: connection is closed"}
+      ]
+    },
+    {
+      "operationName": "GET /items/ http send",
+      "duration": 72,
+      "tags": [
+        {"key": "http.status_code", "value": "404"}
+      ]
+    }
+  ]
+}
+```
 
 ## Task 3C — Observability MCP tools
 
@@ -169,10 +216,21 @@ backend-1  | error: "(sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) con
 - `mcp_obs_traces_get` — Fetch specific trace by ID
 
 **Agent response (normal conditions):**
-<!-- Paste agent response to "Any LMS backend errors in the last 10 minutes?" -->
+```
+No LMS backend errors found in the last 10 minutes. The system is healthy.
+```
 
-**Agent response (failure conditions):**
-<!-- Paste agent response after stopping PostgreSQL -->
+**Agent response (failure conditions - PostgreSQL stopped):**
+```
+Found 1 error in the Learning Management Service in the last 10 minutes:
+
+Error: (sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) connection is closed
+- Service: Learning Management Service
+- Event: db_query
+- Trace ID: f833daef45ac9bce38911e4e8d652655
+
+The database connection was closed. Check if PostgreSQL is running.
+```
 
 ## Task 4A — Multi-step investigation
 
