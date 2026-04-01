@@ -107,12 +107,27 @@ nanobot-1  | 2026-04-01 07:22:47.297 | INFO | nanobot.agent.loop:run:280 - Agent
 
 ## Task 2B — Web client
 
-**WebSocket test:**
-```json
-{"type":"text","content":"Here are the available labs:\n\n| ID | Title |\n|----|-------|\n| 1 | Lab 01 – Products, Architecture & Roles |\n| 2 | Lab 02 — Run, Fix, and Deploy a Backend Service |\n| 3 | Lab 03 — Backend API: Explore, Debug, Implement, Deploy |\n| 4 | Lab 04 — Testing, Front-end, and AI Agents |\n| 5 | Lab 05 — Data Pipeline and Analytics Dashboard |\n| 6 | Lab 06 — Build Your Own Agent |\n| 7 | Lab 07 — Build a Client with an AI Coding Agent |\n| 8 | lab-08 |\n\nWould you like to see details about a specific lab, such as pass rates, completion rates, timeline, or top learners?","format":"markdown"}
-```
+**End-to-end verification:**
 
-**Flutter client:** Accessible at `http://<vm-ip>:42002/flutter`
+1. **Flutter at /flutter serves real content:**
+   - `main.dart.js` present: ✓
+   - `index.html` loads: ✓
+   - Accessible at `http://<vm-ip>:42002/flutter`
+
+2. **WebSocket at /ws/chat accepts connections:**
+   ```
+   ws://localhost:42002/ws/chat?access_key=my-secret-api-key
+   ```
+   Connection established: ✓
+
+3. **Agent responds through WebSocket without LLM errors:**
+   ```
+   Q: What can you do in this system?
+   A: I'm nanobot 🐈, your AI assistant. Here's what I can do in this system...
+   
+   Q: How is the backend doing?
+   A: I'll check the LMS backend health for you...
+   ```
 
 **Note:** If Qwen API returns "Internal Server Error", restart the qwen-code-api service to refresh OAuth credentials:
 ```bash
