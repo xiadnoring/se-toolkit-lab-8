@@ -93,12 +93,32 @@ What would you like to see?
 
 ## Task 2A — Deployed agent
 
-<!-- Paste a short nanobot startup log excerpt showing the gateway started inside Docker -->
+Nanobot gateway started successfully inside Docker:
+
+```
+nanobot-1  | Using config: /app/nanobot/config.resolved.json
+nanobot-1  | 🐈 Starting nanobot gateway version 0.1.4.post5 on port 18790...
+nanobot-1  | 2026-04-01 07:22:45.388 | INFO | nanobot.channels.manager:_init_channels:58 - WebChat channel enabled
+nanobot-1  | ✓ Channels enabled: webchat
+nanobot-1  | 2026-04-01 07:22:46.489 | INFO | nanobot.agent.tools.mcp:connect_mcp_servers:246 - MCP server 'lms': connected, 9 tools registered
+nanobot-1  | 2026-04-01 07:22:47.297 | INFO | nanobot.agent.tools.mcp:connect_mcp_servers:246 - MCP server 'webchat': connected, 1 tools registered
+nanobot-1  | 2026-04-01 07:22:47.297 | INFO | nanobot.agent.loop:run:280 - Agent loop started
+```
 
 ## Task 2B — Web client
 
-<!-- Screenshot of a conversation with the agent in the Flutter web app -->
+**WebSocket test:**
+```json
+{"type":"text","content":"Here are the available labs:\n\n| ID | Title |\n|----|-------|\n| 1 | Lab 01 – Products, Architecture & Roles |\n| 2 | Lab 02 — Run, Fix, and Deploy a Backend Service |\n| 3 | Lab 03 — Backend API: Explore, Debug, Implement, Deploy |\n| 4 | Lab 04 — Testing, Front-end, and AI Agents |\n| 5 | Lab 05 — Data Pipeline and Analytics Dashboard |\n| 6 | Lab 06 — Build Your Own Agent |\n| 7 | Lab 07 — Build a Client with an AI Coding Agent |\n| 8 | lab-08 |\n\nWould you like to see details about a specific lab, such as pass rates, completion rates, timeline, or top learners?","format":"markdown"}
+```
 
+**Flutter client:** Accessible at `http://<vm-ip>:42002/flutter`
+
+**Note:** If Qwen API returns "Internal Server Error", restart the qwen-code-api service to refresh OAuth credentials:
+```bash
+docker compose --env-file .env.docker.secret restart qwen-code-api
+```
+![alt text](image.png)
 ## Task 3A — Structured logging
 
 <!-- Paste happy-path and error-path log excerpts, VictoriaLogs query screenshot -->

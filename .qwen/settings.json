@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(uv *)",
-      "Bash(mkdir *)"
+      "Bash(mkdir *)",
+      "Bash(git submodule *)",
+      "Bash(docker compose *)",
+      "Bash(sleep *)"
     ]
   },
   "$version": 3
