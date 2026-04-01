@@ -136,15 +136,41 @@ docker compose --env-file .env.docker.secret restart qwen-code-api
 ![alt text](image.png)
 ## Task 3A — Structured logging
 
-<!-- Paste happy-path and error-path log excerpts, VictoriaLogs query screenshot -->
+**Happy-path log excerpt:**
+```
+backend-1  | 2026-04-01 08:45:17,645 INFO [lms_backend.main] - request_started
+backend-1  | 2026-04-01 08:45:17,650 INFO [lms_backend.auth] - auth_success
+backend-1  | 2026-04-01 08:45:17,651 INFO [lms_backend.db.items] - db_query
+backend-1  | 2026-04-01 08:45:17,802 INFO [lms_backend.main] - request_completed
+```
+
+**Error-path log excerpt (PostgreSQL stopped):**
+```
+backend-1  | 2026-04-01 08:45:46,741 ERROR [lms_backend.db.items] - db_query
+backend-1  | 2026-04-01 08:45:46,742 WARNING [lms_backend.routers.items] - items_list_failed_as_not_found
+backend-1  | error: "(sqlalchemy.dialects.postgresql.asyncpg.InterfaceError) connection is closed"
+```
+
+**VictoriaLogs query:** `_time:10m severity:ERROR service.name:"Learning Management Service"`
 
 ## Task 3B — Traces
 
-<!-- Screenshots: healthy trace span hierarchy, error trace -->
+<!-- Screenshot of healthy trace span hierarchy -->
+<!-- Screenshot of error trace -->
 
 ## Task 3C — Observability MCP tools
 
-<!-- Paste agent responses to "any errors in the last hour?" under normal and failure conditions -->
+**MCP tools registered:**
+- `mcp_obs_logs_search` — Search logs using LogsQL query
+- `mcp_obs_logs_error_count` — Count errors per service over time window
+- `mcp_obs_traces_list` — List recent traces for a service
+- `mcp_obs_traces_get` — Fetch specific trace by ID
+
+**Agent response (normal conditions):**
+<!-- Paste agent response to "Any LMS backend errors in the last 10 minutes?" -->
+
+**Agent response (failure conditions):**
+<!-- Paste agent response after stopping PostgreSQL -->
 
 ## Task 4A — Multi-step investigation
 

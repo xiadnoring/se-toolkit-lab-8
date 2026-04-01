@@ -27,6 +27,9 @@ COPY --from=workspace nanobot-websocket-channel/nanobot-channel-protocol /app/na
 COPY --from=workspace nanobot-websocket-channel/mcp-webchat /app/nanobot-websocket-channel/mcp-webchat
 COPY --from=workspace nanobot-websocket-channel/nanobot-webchat /app/nanobot-websocket-channel/nanobot-webchat
 
+# Copy mcp-obs for build (from workspace context)
+COPY --from=workspace mcp/mcp-obs /app/mcp/mcp-obs
+
 # Copy backend for workspace resolution
 COPY --from=workspace backend /app/backend
 
@@ -37,12 +40,13 @@ COPY --from=workspace qwen-code-api /app/qwen-code-api
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen
 
-# Install webchat packages directly
+# Install webchat and observability packages directly
 WORKDIR /app/nanobot
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv pip install --editable ../nanobot-websocket-channel/nanobot-channel-protocol \
     --editable ../nanobot-websocket-channel/mcp-webchat \
-    --editable ../nanobot-websocket-channel/nanobot-webchat
+    --editable ../nanobot-websocket-channel/nanobot-webchat \
+    --editable ../mcp/mcp-obs
 WORKDIR /app
 
 # ---
