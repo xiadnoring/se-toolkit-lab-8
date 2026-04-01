@@ -56,9 +56,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV LANG=C.UTF-8
 
-# Build args for user IDs
-ARG APP_UID=999
-ARG APP_GID=999
+# Build args for user IDs - match HOST_UID/HOST_GID from docker-compose.yml
+ARG APP_UID=1000
+ARG APP_GID=1000
 
 # Create non-root user
 RUN groupadd --system --gid ${APP_GID} appgroup \

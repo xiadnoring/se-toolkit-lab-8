@@ -5,7 +5,8 @@
       "Bash(mkdir *)",
       "Bash(git submodule *)",
       "Bash(docker compose *)",
-      "Bash(sleep *)"
+      "Bash(sleep *)",
+      "Bash(curl *)"
     ]
   },
   "$version": 3
