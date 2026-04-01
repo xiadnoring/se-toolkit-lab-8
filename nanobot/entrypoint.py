@@ -18,7 +18,9 @@ def main():
     # Paths
     config_dir = Path(__file__).parent
     config_path = config_dir / "config.json"
-    resolved_path = config_dir / "config.resolved.json"
+    # Write resolved config to /tmp to avoid permission issues with mounted volumes
+    resolved_path = Path("/tmp/nanobot/config.resolved.json")
+    resolved_path.parent.mkdir(parents=True, exist_ok=True)
     workspace_dir = config_dir / "workspace"
 
     # Read base config
